@@ -1,5 +1,3 @@
-USE SpotifyClone;
-
 DELIMITER $$;
 
 CREATE FUNCTION quantidade_musicas_no_historico(user_id INT)

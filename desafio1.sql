@@ -1,6 +1,5 @@
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE SpotifyClone;
-USE SpotifyClone;
 CREATE TABLE artistas (
     artista_id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(40)
