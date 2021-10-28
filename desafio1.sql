@@ -1,49 +1,57 @@
 DROP DATABASE IF EXISTS SpotifyClone;
 CREATE DATABASE SpotifyClone;
 USE SpotifyClone;
-CREATE TABLE artistas(
+CREATE TABLE artistas (
     artista_id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(40)
 );
-CREATE TABLE albuns(
+CREATE TABLE albuns (
     album_id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(40),
     artista_id INT,
-    FOREIGN KEY (artista_id) REFERENCES artistas (artista_id)
+    FOREIGN KEY (artista_id)
+        REFERENCES artistas (artista_id)
 );
-CREATE TABLE musicas(
+CREATE TABLE musicas (
     musica_id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(40),
     artista_id INT,
     album_id INT,
-    FOREIGN KEY (artista_id) REFERENCES artistas (artista_id),
-    FOREIGN KEY (album_id) REFERENCES albuns (album_id)
+    FOREIGN KEY (artista_id)
+        REFERENCES artistas (artista_id),
+    FOREIGN KEY (album_id)
+        REFERENCES albuns (album_id)
 );
-CREATE TABLE planos(
+CREATE TABLE planos (
     plano_id INT AUTO_INCREMENT PRIMARY KEY,
-    valor DECIMAL(3, 2),
+    valor DECIMAL(3 , 2 ),
     tipo VARCHAR(20)
 );
-CREATE TABLE usuarios(
+CREATE TABLE usuarios (
     usuario_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(20),
     idade TINYINT,
     plano_id INT,
-    FOREIGN KEY (plano_id) REFERENCES planos (plano_id)
+    FOREIGN KEY (plano_id)
+        REFERENCES planos (plano_id)
 );
-CREATE TABLE usuarios_artistas(
+CREATE TABLE usuarios_artistas (
     usuario_id INT,
     artista_id INT,
-    CONSTRAINT PRIMARY KEY(usuario_id, artista_id),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios (usuario_id),
-    FOREIGN KEY (artista_id) REFERENCES artistas (artista_id)
+    CONSTRAINT PRIMARY KEY (usuario_id , artista_id),
+    FOREIGN KEY (usuario_id)
+        REFERENCES usuarios (usuario_id),
+    FOREIGN KEY (artista_id)
+        REFERENCES artistas (artista_id)
 );
-CREATE TABLE historico_de_reproducoes(
+CREATE TABLE historico_de_reproducoes (
     usuario_id INT,
     musica_id INT,
-    CONSTRAINT PRIMARY KEY(usuario_id, musica_id),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios (usuario_id),
-    FOREIGN KEY (musica_id) REFERENCES musicas (musica_id)
+    CONSTRAINT PRIMARY KEY (usuario_id , musica_id),
+    FOREIGN KEY (usuario_id)
+        REFERENCES usuarios (usuario_id),
+    FOREIGN KEY (musica_id)
+        REFERENCES musicas (musica_id)
 );
 INSERT INTO artistas (nome)
 VALUES ('Walter Phoenix'),
